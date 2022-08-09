@@ -36,3 +36,32 @@ def check_site(url):
         return(f"{url} is an invalid URL")
 
 ```
+
+# Returning postcode, long, lat
+
+```python
+import requests
+# display longitude - lat - postcode - etc
+def postcode_attribute_scraper():
+    post = input("What is your postcode? ")
+    url = "https://api.postcodes.io/postcodes/"
+    url_arg = url + post
+    response = requests.get(url_arg)
+    dic = response.json()
+    resdic = dic['result']
+    desired = ["postcode", "longitude", "latitude"]
+    for key in resdic:
+        if key in desired:
+            if key == desired[0]:
+
+                print(f"please confirm if this is your postcode: {resdic['postcode']}")
+            if key == desired[1]:
+                print(f"this is your longitude: {resdic['longitude']}")
+            if key == desired[2]:
+                print(f"this is your latitude: {resdic['latitude']}")
+
+
+
+postcode_attribute_scraper()
+
+```
